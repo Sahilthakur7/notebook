@@ -14,3 +14,23 @@
  *= require_self
  *= require 'bootstrap-sass-official'
  */
+
+ /* home page */
+
+html,body {
+    height: 100%;
+}
+
+#cover {
+    background: #222 url('abc.jpeg') no-repeat;
+    background-size: cover;
+    color: white;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+#cover-caption { 
+width: 100%;
+}
