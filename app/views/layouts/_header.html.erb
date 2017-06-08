@@ -12,7 +12,9 @@
                                                                       <a class="nav-link" href="#">Features</a>
                                                                             </li>
                                                                                   <li class="nav-item">
-                                                                                              <a class="nav-link" href="#">Pricing</a>
+                                                                                      <% if user_signed_in?%>
+                                                                                      <%= link_to "Profile", user_path(current_user), class:"nav-link"%>
+                                                                                  <%end%>
                                                                                                     </li>
                                                                                                           <li class="nav-item dropdown">
                                                                                                                       <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
