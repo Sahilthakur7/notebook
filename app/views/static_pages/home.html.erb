@@ -28,7 +28,7 @@
             <br>
             <a href="#page-main" class="btn btn-secondary-outline btn-sm" role="button">&darr;</a>
         <%else%>
-            <%= button_to "Sign Out", destroy_user_session_path, class: "btn btn-danger btn-lg", method: :delete%>
+            <%= link_to "Sign Out", destroy_user_session_path, class: "btn btn-danger btn-lg", method: :delete%>
         <%end%>
 
 
