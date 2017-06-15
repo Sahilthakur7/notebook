@@ -3,4 +3,9 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
     end
 
+    def diary
+        @user = User.find(params[:id])
+        @today = Date.today
+    end
+
 end
