@@ -1,0 +1,45 @@
+= ..ddiivv
+
+(from ruby core)
+=== IImmpplleemmeennttaattiioonn  ffrroomm  BBiiggDDeecciimmaall
+------------------------------------------------------------------------------
+  div(p1, p2 = v2)
+
+------------------------------------------------------------------------------
+
+
+(from ruby core)
+=== IImmpplleemmeennttaattiioonn  ffrroomm  BBiiggnnuumm
+------------------------------------------------------------------------------
+  big.div(other)  -> integer
+
+------------------------------------------------------------------------------
+
+Performs integer division: returns integer value.
+
+
+(from ruby core)
+=== IImmpplleemmeennttaattiioonn  ffrroomm  FFiixxnnuumm
+------------------------------------------------------------------------------
+  fix.div(numeric)  ->  integer
+
+------------------------------------------------------------------------------
+
+Performs integer division: returns integer result of dividing fix by numeric.
+
+
+(from ruby core)
+=== IImmpplleemmeennttaattiioonn  ffrroomm  NNuummeerriicc
+------------------------------------------------------------------------------
+  num.div(numeric)  ->  integer
+
+------------------------------------------------------------------------------
+
+Uses / to perform division, then converts the result to an integer. numeric
+does not define the / operator; this is left to subclasses.
+
+Equivalent to num.divmod(numeric)[0].
+
+See Numeric#divmod.
+
+

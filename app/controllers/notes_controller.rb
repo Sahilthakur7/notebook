@@ -1,6 +1,7 @@
 class NotesController < ApplicationController
     def new
         @note = Note.new
+        @user = User.find(params[:user_id])
     end
 
     def show
@@ -8,9 +9,11 @@ class NotesController < ApplicationController
     end
 
     def create
-        @note = current_user.notes.create(note_params) 
+        @note = current_user.notes.build(note_params) 
         if @note.save
-            redirect to diary_user_path(current_user)
+            redirect_to user_diary_path(current_user)
+        else
+            redirect_to user_diary_note_path
         end
     end
 
