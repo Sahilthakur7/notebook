@@ -5,6 +5,9 @@ root 'static_pages#home'
  
  devise_for :users, :controllers => { registrations: 'registrations' }
  resources :users do
+     resource :quick_notes do
+         resources :notes
+     end
      resource :diary,only: [:show] do
 
         resources :notes

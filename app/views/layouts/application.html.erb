@@ -9,6 +9,7 @@
 <body>
     <% unless current_page?(root_path)%>
     <%= render 'layouts/header'%>
+    <%= render 'layouts/messages'%>
 <%end%>
 <%= yield %>
 <%if current_page?(root_path)%>

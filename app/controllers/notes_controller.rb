@@ -23,4 +23,3 @@ class NotesController < ApplicationController
         params.require(:note).permit(:title,:content,:visibility)
     end
 end
-
