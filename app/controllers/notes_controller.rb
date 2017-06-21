@@ -12,6 +12,7 @@ class NotesController < ApplicationController
     def create
         @note = current_user.notes.build(note_params) 
         if on_quick_notes_page
+            @note.make_it_quick_note
             if @note.save
                 redirect_to user_quick_notes_path(current_user)
             else
@@ -19,6 +20,7 @@ class NotesController < ApplicationController
             end
 
         elsif on_diary_page
+            @note.make_it_diary_note
             if @note.save
 
                 redirect_to user_diary_path(current_user)
