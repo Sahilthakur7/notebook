@@ -5,24 +5,11 @@
     </div>
     <div class="contact-section">
         <div class="container">
-            <%=form_for([@user,:diary,@note]) do |f|%>
-                <div class="col-md-6 form-line">
-                    <div class="form-group">
-                        <%=f.label :title%>
-                        <%=f.text_field :title ,class: "form-control",placeholder: "Title goes here.."%>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <%=f.label :content%>
-                        <%=f.text_area :content, class: "form-control" ,placeholder: "Content goes here.."%>
-                    </div>
-                    <div>
-
-                        <%=f.submit "Save Note",class: "btn btn-default"%>
-                    </div>
-
-                </div>
+            <% if current_page?(new_user_diary_note_path(current_user))%>
+                <%= render 'diary_note'%>
+            <%elsif current_page?(new_user_quick_notes_note_path(current_user))%>
+                <%= render 'quick_notes_note'%>
             <%end%>
         </div>
 </section>
+

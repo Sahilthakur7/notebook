@@ -1,0 +1,21 @@
+
+<%=form_for([@user,:quick_notes,@note]) do |f|%>
+    <div class="col-md-6 form-line">
+        <div class="form-group">
+            <%=f.label :title%>
+            <%=f.text_field :title ,class: "form-control",placeholder: "Title goes here.."%>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <%=f.label :content%>
+            <%=f.text_area :content, class: "form-control" ,placeholder: "Content goes here.."%>
+        </div>
+        <div>
+
+            <%=f.submit "Save Note",class: "btn btn-default"%>
+        </div>
+
+    </div>
+<%end%>
+
