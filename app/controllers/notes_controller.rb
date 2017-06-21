@@ -9,6 +9,14 @@ class NotesController < ApplicationController
 
     end
 
+    def index
+        if on_quick_notes_page
+            @notes = Note.quick_notes
+        elsif on_diary_notes_page
+            @notes = Note.diary_notes
+        end
+    end
+
     def create
         @note = current_user.notes.build(note_params) 
         if on_quick_notes_page

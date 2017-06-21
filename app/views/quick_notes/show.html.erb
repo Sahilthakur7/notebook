@@ -4,7 +4,9 @@
             <div class="col-sm-10 col-sm-offset-1"></div>
             <h1 class="display-2">Take some quick notes here.</h1>
             <p><%=link_to "New note", new_user_quick_notes_note_path(current_user) , class: "btn btn-lg btn-danger"%><p>
+            <p><%=link_to "All Quick Notes",user_quick_notes_notes_path(current_user), class: "btn btn-lg btn-success"%>
         </div>
     </div>
+</section>
 
 
