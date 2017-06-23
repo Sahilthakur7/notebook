@@ -1,0 +1,4 @@
+<center><h1 class="display-1"><%= @note.title%></h1></center>
+<p class="lead">Author: <%= @note.user.to_s%></p>
+<p class="lead">Dated: <%= @note.creation_date%></p>
+<center><font face="courier new"><%= @note.content%></font></center>

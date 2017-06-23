@@ -162,3 +162,27 @@ textarea.form-control {
     display: flex;
     // align-items: center;
 }
+
+ol {
+    counter-reset: myCouter;
+}
+
+li {
+    list-style: outside none none;
+}
+
+#shownote{
+li::before {
+    content: counter(myCouter, decimal);
+    counter-increment: myCouter;
+    
+    background: #2980b9 none repeat scroll 0 0;
+    color: white;
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    margin: 5px 10px;
+    text-align: center;
+    width: 40px;
+}
+}

@@ -13,4 +13,8 @@ class User < ActiveRecord::Base
   has_one :diary
   has_many :notes
 
+  def to_s
+      name
+  end
+
 end

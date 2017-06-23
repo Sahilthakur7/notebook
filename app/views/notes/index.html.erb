@@ -1,7 +1,22 @@
-Hello
-<% @notes.each do |note|%>
-    <%= note.title%>
-    <p>
-    <%= note.content%>
-    <p>
-<%end%>
+
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="lead">Ordered list by CSS3</h1>
+        <p>You don't need to print numbers by php, js... and style them in any tags</p>
+        <p><small>thank for rate</small></p>
+    </div>
+</div>
+
+<section id="shownote">
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <ol class="ordered-list">
+                <% @notes.each do |note|%>
+                   <li> <%=link_to note.title, user_quick_notes_note_path(current_user,note)%></li>
+                <%end%>
+            </ol>
+        </div>
+    </div>
+</div>
+</section>
