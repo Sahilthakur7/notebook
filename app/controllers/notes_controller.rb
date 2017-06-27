@@ -19,27 +19,16 @@ class NotesController < ApplicationController
 
     def create
         @note = current_user.notes.build(note_params) 
-        if on_quick_notes_page
-            @note.make_it_quick_note
-            if @note.save
-                redirect_to user_quick_notes_path(current_user)
-            else
-                redirect_to root_path
-            end
+        proper_redirection
 
-        elsif on_diary_page
-            @note.make_it_diary_note
-            if @note.save
-
-                redirect_to user_diary_path(current_user)
-            else
-                redirect_to root_path
-            end
-        else
-            redirect_to root_path
-        end
     end
+    
+    def destroy
+        @note = Note.find(params[:id])
+        @note.destroy!
+        proper_redirection
 
+    end
     private
 
     def note_params
@@ -60,5 +49,28 @@ class NotesController < ApplicationController
         else
             return false
         end
+    end
+
+    def proper_redirection
+        if on_quick_notes_page
+            @note.make_it_quick_note
+            if @note.save
+                redirect_to user_quick_notes_path(current_user)
+            else
+                redirect_to root_path
+            end
+
+        elsif on_diary_page
+            @note.make_it_diary_note
+            if @note.save
+
+                redirect_to user_diary_path(current_user)
+            else
+                redirect_to root_path
+            end
+        else
+            redirect_to root_path
+        end
+
     end
 end

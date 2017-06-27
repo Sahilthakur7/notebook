@@ -1,4 +1,8 @@
 <center><h1 class="display-1"><%= @note.title%></h1></center>
 <p class="lead">Author: <%= @note.user.to_s%></p>
 <p class="lead">Dated: <%= @note.creation_date%></p>
-<center><font face="courier new"><%= @note.content%></font></center>
+<div class="show">
+<font face="courier new"><%=  @note.content%></font>
+</div>
+
+<%= link_to "Delete Note", user_quick_notes_note_path(current_user,@note), method: :delete, data: { confirm: "Are you sure?"} , class: "btn btn-danger "%>
