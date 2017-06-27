@@ -22,6 +22,20 @@ class NotesController < ApplicationController
         proper_redirection
 
     end
+
+    def edit
+         @note = Note.find(params[:id])
+         respond_to do |format|
+             format.html
+         end
+    end
+
+    def update
+        @note = Note.find(params[:id])
+        if @note.update_attributes(note_params)
+            redirect_to user_quick_notes_note_path(current_user,@note)
+        end
+    end
     
     def destroy
         @note = Note.find(params[:id])
