@@ -24,10 +24,10 @@ class NotesController < ApplicationController
     end
 
     def edit
-         @note = Note.find(params[:id])
-         respond_to do |format|
-             format.html
-         end
+        @note = Note.find(params[:id])
+        respond_to do |format|
+            format.html
+        end
     end
 
     def update
@@ -36,11 +36,11 @@ class NotesController < ApplicationController
             redirect_to user_quick_notes_note_path(current_user,@note)
         end
     end
-    
+
     def destroy
         @note = Note.find(params[:id])
-        @note.destroy!
-        proper_redirection
+        @note.delete
+        proper_redirection_delete
 
     end
     private
@@ -85,6 +85,17 @@ class NotesController < ApplicationController
         else
             redirect_to root_path
         end
+    end
+
+    def proper_redirection_delete
+        if on_quick_notes_page
+            redirect_to user_quick_notes_path(current_user)
+
+        elsif on_diary_page
+
+            redirect_to user_diary_path(current_user)
+        end
+
 
     end
 end

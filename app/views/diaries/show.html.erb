@@ -1,4 +1,4 @@
-a<div class="container">
+<div class="container">
 
     <div class="row row-offcanvas row-offcanvas-right">
 
@@ -8,38 +8,36 @@ a<div class="container">
             </p>
             <div class="jumbotron"> 
                 <h1>Dear Diary,</h1>
+                <% if @note.is_a?(NullNote)%>
                 <%=link_to "New Note", new_user_diary_note_path(current_user),class:"btn btn-success"%></p>
+            <%else%>
+                You have written today's note. Check it out from the table.
+            <%end%>
             </div>
             <div class="row">
                 <div class="col-6 col-lg-4">
                     <h2>Heading</h2>
                     <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                    <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
                 </div><!--/span-->
                 <div class="col-6 col-lg-4">
                     <h2>Heading</h2>
                     <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                    <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
                 </div><!--/span-->
                 <div class="col-6 col-lg-4">
                     <h2>Heading</h2>
                     <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                    <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
                 </div><!--/span-->
                 <div class="col-6 col-lg-4">
                     <h2>Heading</h2>
                     <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                    <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
                 </div><!--/span-->
                 <div class="col-6 col-lg-4">
                     <h2>Heading</h2>
                     <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                    <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
                 </div><!--/span-->
                 <div class="col-6 col-lg-4">
                     <h2>Heading</h2>
                     <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                    <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
                 </div><!--/span-->
             </div><!--/row-->
         </div><!--/span-->
@@ -47,7 +45,7 @@ a<div class="container">
         <div class="col-6 col-md-3 sidebar-offcanvas" id="sidebar">
             <div class="list-group">
                 </br>
-                <%= link_to @today,"#",class: "list-group-item active" %>
+                <%= link_to @today, @note.is_a?(NullNote)? "#" : user_diary_note_path(current_user,@note),class: "list-group-item active" %>
                 <%= link_to @today-1,"#",class: "list-group-item " %>
 
                 <%= link_to @today-2,"#",class: "list-group-item " %>
@@ -57,6 +55,7 @@ a<div class="container">
                 <%= link_to @today-4,"#",class: "list-group-item " %>
 
                 <%= link_to @today-5,"#",class: "list-group-item " %>
+                <%= link_to "Diary","#",class: "list-group-item " %>
             </div>
         </div><!--/span-->
     </div><!--/row-->
