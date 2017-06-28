@@ -2,7 +2,6 @@ class Note < ActiveRecord::Base
   belongs_to :user
   scope :quick_notes, -> { where(visibility: 'quick')}
   scope :diary_notes, -> { where(visibility: 'diary')}
-  scope :six_diary_notes, -> { where(visibility: 'diary')}
   default_scope -> { order(created_at: :desc)}
 
 
