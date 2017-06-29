@@ -2,6 +2,7 @@ class Note < ActiveRecord::Base
   belongs_to :user
   scope :quick_notes, -> { where(visibility: 'quick')}
   scope :diary_notes, -> { where(visibility: 'diary')}
+  scope :publish_notes, -> { where(visibility: 'publish')}
   default_scope -> { order(created_at: :desc)}
 
 
@@ -11,6 +12,10 @@ class Note < ActiveRecord::Base
 
   def make_it_diary_note
       update_attribute(:visibility, "diary")
+  end
+
+  def make_it_publish_note
+      update_attribute(:visibility, "publish")
   end
 
   def creation_date

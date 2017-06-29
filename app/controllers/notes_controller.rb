@@ -12,8 +12,10 @@ class NotesController < ApplicationController
     def index
         if on_quick_notes_page
             @notes = Note.quick_notes
-        elsif on_diary_notes_page
+        elsif on_diary_page
             @notes = Note.diary_notes
+        elsif on_publish_notes_page
+            @notes = Note.publish_notes
         end
     end
 
@@ -65,6 +67,14 @@ class NotesController < ApplicationController
         end
     end
 
+    def on_publish_notes_page
+        if request.original_fullpath.include?("publish")
+            return true
+        else
+            return false
+        end
+    end
+
     def proper_redirection
         if on_quick_notes_page
             @note.make_it_quick_note
@@ -82,7 +92,16 @@ class NotesController < ApplicationController
             else
                 redirect_to root_path
             end
+        elsif on_publish_notes_page
+            @note.make_it_publish_note
+            if @note.save
+                redirect_to user_publish_notes_path(current_user)
+            else
+                redirect_to root_path
+            end
+
         else
+
             redirect_to root_path
         end
     end

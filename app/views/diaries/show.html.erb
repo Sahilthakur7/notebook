@@ -8,7 +8,7 @@
             </p>
             <div class="jumbotron"> 
                 <h1>Dear Diary,</h1>
-                <% if @note.is_a?(NullNote)%>
+                <% if @note.respond_to?("kv")%>
                     <%=link_to "New Note", new_user_diary_note_path(current_user),class:"btn btn-success"%></p>
                 <%else%>
                     You have written today's note. Check it out from the table.
@@ -45,7 +45,7 @@
         <div class="col-6 col-md-3 sidebar-offcanvas" id="sidebar">
             <div class="list-group">
                 </br>
-                <%= link_to @today, @note.is_a?(NullNote)? "#" : user_diary_note_path(current_user,@note),class: "list-group-item active" %>
+                <%= link_to @today, @note.respond_to?("kv")? "#" : user_diary_note_path(current_user,@note),class: "list-group-item active" %>
                 <% if @notes_no > 0%>
                     <%= link_to @notes.first.created_at.to_date,user_diary_note_path(current_user,@notes.first),class: "list-group-item " %>
                 <%end%>

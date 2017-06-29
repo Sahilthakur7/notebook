@@ -9,8 +9,10 @@ root 'static_pages#home'
          resources :notes
      end
      resource :diary,only: [:show] do
-
-        resources :notes
+         resources :notes
+     end
+     resource :publish_notes do
+         resources :notes
      end
  end
   # The priority is based upon order of creation: first created -> highest priority.

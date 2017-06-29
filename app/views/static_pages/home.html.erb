@@ -5,34 +5,34 @@
             <h1 class="display-2">Welcome To The Notebook.</h1>
             <p>This is a notebook app where you can save,share and create discussions on some of your thoughts. Or someone else's for that instance.</p>
 
-                <% unless user_signed_in?%>
-                    <%= form_for(resource,as: resource_name, url: session_path(resource_name), :html => { class:"form-inline" }) do |f|%>
-                <div class="form-group">
-                    <label class="sr-only">Name</label>
-                    &emsp;&emsp;&emsp;
-                    &emsp;&emsp;&emsp;
-                    &emsp;&emsp;&emsp;
-                    <%= f.email_field :email , class:"form-control form-control-lg", placeholder:"abc@example.com"%>
-                </div>
-                 <div class="form-group">
-                    <label class="sr-only">Password</label>
+            <% unless user_signed_in?%>
+                <%= form_for(resource,as: resource_name, url: session_path(resource_name), :html => { class:"form-inline" }) do |f|%>
+                    <div class="form-group">
+                        <label class="sr-only">Name</label>
+                        &emsp;&emsp;&emsp;
+                        &emsp;&emsp;&emsp;
+                        &emsp;&emsp;&emsp;
+                        <%= f.email_field :email , class:"form-control form-control-lg", placeholder:"abc@example.com"%>
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only">Password</label>
 
-                    <%= f.password_field :password , class:"form-control form-control-lg", placeholder:"Password"%>
-                </div>
-                <%= f.submit "Sign In!", class:"btn btn-success btn-lg"%>
-            </form>
-        <%end%>
-            </br>
-            </br>
-            <%= button_to "Sign Up", new_user_registration_path , method: "get", class:"btn btn-success btn-lg"%>
-            <br>
-            <a href="#page-main" class="btn btn-secondary-outline btn-sm" role="button">&darr;</a>
-        <%else%>
-            <%= link_to "Sign Out", destroy_user_session_path, class: "btn btn-danger btn-lg", method: :delete%>
-        <%end%>
+                        <%= f.password_field :password , class:"form-control form-control-lg", placeholder:"Password"%>
+                    </div>
+                    <%= f.submit "Sign In!", class:"btn btn-success btn-lg"%>
+                    </form>
+                <%end%>
+                </br>
+                </br>
+                <%= button_to "Sign Up", new_user_registration_path , method: "get", class:"btn btn-success btn-lg"%>
+                <br>
+                <a href="#page-main" class="btn btn-secondary-outline btn-sm" role="button">&darr;</a>
+            <%else%>
+                <%= link_to "Sign Out", destroy_user_session_path, class: "btn btn-danger btn-lg", method: :delete%>
+            <%end%>
 
 
- 
+
         </div>
     </div>
 </section>
@@ -41,54 +41,60 @@
         <div class-"container">
             <h2>Features of the Notebook</h2>
 
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="card-group">
-                    <div class="card">
-                        <div class="card-block">
-                            <h4 class="card-title">Share your notes</h4>
-                            <h6 class="card-subtitle">Send to anyone </h6>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card-group">
+                        <div class="card">
+                            <div class="card-block">
+                                <h4 class="card-title">Share your notes</h4>
+                                <h6 class="card-subtitle">Send to anyone </h6>
+                            </div>
+
+                            <%=image_tag("notepass.png")%>
+                            <div class="card-block">
+                                <p class="card-text">In the notebook, you can send your notes to any user on the app and can receive notes from anyone.Just by your username.</p>
+                                <% if user_signed_in? %>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Learn More</button>
+                            <%end%>
+                            </div>
+
+                        </div>
+                        <div class="card">
+                            <div class="card-block">
+                                <h4 class="card-title">Publish your notes</h4>
+                                <h6 class="card-subtitle">Let everyone know your thoughts </h6>
+                            </div>
+                            <%=image_tag("bulettin.jpg")%>
+                            <div class="card-block">
+                                <p class="card-text">In the notebook, you can publish your notes and everyone can see and comment on them. Let your ideas flow!</p>
+                                <% if user_signed_in? %>
+                                    <%= link_to "Go!", user_diary_path(current_user), class: "btn btn-danger"%>
+                                <%end%>
+                            </div>
+
+                        </div>
+                        <div class="card">
+                            <div class="card-block">
+                                <h4 class="card-title">Maintain your diary</h4>
+                                <h6 class="card-subtitle">Send to anyone </h6>
+                            </div>
+                            <%= image_tag("diary.jpg")%>
+                            <div class="card-block">
+                                <p class="card-text">In the notebook, you can maintain your very own personal diary. The notes in the diary will be visible to none. And it will be maintained only for the days you write it.</p>
+                                <% if user_signed_in? %>
+                                <%= link_to "Go!", user_diary_path(current_user), class: "btn btn-danger"%>
+                            <%end%>
+                            </div>
+
                         </div>
 
-                        <%=image_tag("notepass.png")%>
-                        <div class="card-block">
-                        <p class="card-text">In the notebook, you can send your notes to any user on the app and can receive notes from anyone.Just by your username.</p>
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Learn More</button>
-                        </div>
-                        
+
                     </div>
-                    <div class="card">
-                        <div class="card-block">
-                            <h4 class="card-title">Publish your notes</h4>
-                            <h6 class="card-subtitle">Let everyone know your thoughts </h6>
-                        </div>
-                        <%=image_tag("bulettin.jpg")%>
-                        <div class="card-block">
-                        <p class="card-text">In the notebook, you can publish your notes and everyone can see and comment on them. Let your ideas flow!</p>
-                        <%= link_to "Go!", user_diary_path(current_user), class: "btn btn-danger"%>
-                        </div>
-                        
-                    </div>
-                    <div class="card">
-                        <div class="card-block">
-                            <h4 class="card-title">Maintain your diary</h4>
-                            <h6 class="card-subtitle">Send to anyone </h6>
-                        </div>
-                        <%= image_tag("diary.jpg")%>
-                        <div class="card-block">
-                        <p class="card-text">In the notebook, you can maintain your very own personal diary. The notes in the diary will be visible to none. And it will be maintained only for the days you write it.</p>
-                        <%= link_to "Go!", user_diary_path(current_user), class: "btn btn-danger"%>
-                        </div>
-                        
-                    </div>
- 
- 
+
                 </div>
-
             </div>
-        </div>
 
-    </div>
+        </div>
     </div>
 
 

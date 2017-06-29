@@ -9,6 +9,8 @@
                 <%= render 'diary_note'%>
             <%elsif current_page?(new_user_quick_notes_note_path(current_user))%>
                 <%= render 'quick_notes_note'%>
+            <%elsif current_page?(new_user_publish_notes_note_path(current_user))%>
+                <%= render 'publish_notes_note'%>
             <%end%>
         </div>
 </section>
