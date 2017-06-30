@@ -4,8 +4,9 @@
 <div class="show">
 <font face="courier new"><%=  @note.content%></font>
 </div>
-
+<% if is_owner?(current_user)  %>
 <%= link_to "Delete Note", user_quick_notes_note_path(current_user,@note), method: :delete, data: { confirm: "Are you sure?"} , class: "btn btn-danger "%>
 <% unless current_page?(user_diary_note_path(current_user,@note))%>
 <%= link_to "Update Note", edit_user_quick_notes_note_path(current_user,@note)  , class: "btn btn-success "%>
+<%end%>
 <%end%>

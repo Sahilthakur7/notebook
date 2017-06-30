@@ -10,6 +10,7 @@ class NotesController < ApplicationController
     end
 
     def index
+        @user = User.find(params[:user_id])
         if on_quick_notes_page
             @notes = Note.quick_notes
         elsif on_diary_page
@@ -103,6 +104,7 @@ class NotesController < ApplicationController
         else
 
             redirect_to root_path
+            flash[:alert] = "Couldn't save your note"
         end
     end
 

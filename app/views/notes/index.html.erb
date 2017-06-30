@@ -1,7 +1,7 @@
 
 <div class="container">
     <div class="jumbotron">
-        <p>This is a list of all your notes.</p>
+        <p>This is a list of all the notes.</p>
         <p><small>Click on one to see its contents.</small></p>
     </div>
 </div>
@@ -12,7 +12,7 @@
         <div class="col-md-6">
             <ol class="ordered-list">
                 <% @notes.each do |note|%>
-                   <li> <%=link_to note.title, user_quick_notes_note_path(current_user,note)%></li>
+                   <li> <%=link_to note.title, user_quick_notes_note_path(@user,note)%></li>
                 <%end%>
             </ol>
         </div>
