@@ -1,0 +1,25 @@
+<h1>This is the list of users on the NOTEBOOK: </h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div id="custom-search-input">
+                <div class="input-group col-md-12">
+                    <%= form_tag(users_path, method: :get) do %>
+                        <%=text_field_tag :search, params[:search], placeholder: "Search users"%>
+                        <%=submit_tag "Search" , class: "btn"%>
+                    <%end%>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</br>
+<ul class="user_list">
+    <% @users.each do |user|%>
+        <li> <%= link_to user, user_path(user)%>(<%=user.notes.count%>)</li>
+        </br>
+    <%end%>
+</ul>
+
+

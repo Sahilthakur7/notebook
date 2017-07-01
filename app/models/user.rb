@@ -17,4 +17,8 @@ class User < ActiveRecord::Base
       name
   end
 
+  def self.search(search)
+      where("name LIKE ? or username LIKE ?", "%#{search}%", "%#{search}%")
+  end
+
 end
