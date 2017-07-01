@@ -16,7 +16,7 @@ class NotesController < ApplicationController
         elsif on_diary_page
             @notes = Note.diary_notes
         elsif on_publish_notes_page
-            @notes = Note.publish_notes
+            @notes = Note.publish_notes.where(user: @user)
         end
     end
 
