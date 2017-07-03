@@ -6,8 +6,8 @@ class DiariesController < ApplicationController
             redirect_to root_path
         end 
         @today = Date.today
-        @note = Note.diary_notes.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).first || NullNote.new
-        @notes = Note.diary_notes || NullNote.new
+        @note = Note.diary_notes.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day,user: @user).first || NullNote.new
+        @notes = Note.diary_notes.where(user: @user) || NullNote.new
         @notes_no = @notes.count
     end
 

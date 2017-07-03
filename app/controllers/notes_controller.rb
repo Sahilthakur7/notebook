@@ -7,14 +7,20 @@ class NotesController < ApplicationController
 
     def show
         @note = Note.find(params[:id])
+        unless on_publish_notes_page
+            if current_user != @note.user 
+                redirect_to root_path
+                flash[:notice] = "You are not allowed to do that"
+            end
+        end
     end
 
     def index
         @user = User.find(params[:user_id])
         if on_quick_notes_page
-            @notes = Note.quick_notes
+            @notes = Note.quick_notes.where(user: @user)
         elsif on_diary_page
-            @notes = Note.diary_notes
+            @notes = Note.diary_notes.where(user: @user)
         elsif on_publish_notes_page
             @notes = Note.publish_notes.where(user: @user)
         end

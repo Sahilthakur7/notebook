@@ -12,8 +12,12 @@
         <div class="col-md-6">
             <ol class="ordered-list">
                 <% @notes.each do |note|%>
+                    <% if note.visibility == 'quick'%>
                    <li> <%=link_to note.title, user_quick_notes_note_path(@user,note)%></li>
+               <%else%>
+                   <li>   <%= link_to note.title, user_publish_notes_note_path(@user,note)%></li>
                 <%end%>
+            <%end%>
             </ol>
         </div>
     </div>
