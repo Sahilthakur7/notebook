@@ -4,6 +4,7 @@ class Note < ActiveRecord::Base
   scope :diary_notes, -> { where(visibility: 'diary')}
   scope :publish_notes, -> { where(visibility: 'publish')}
   default_scope -> { order(created_at: :desc)}
+  has_many :comments
 
 
   def make_it_quick_note

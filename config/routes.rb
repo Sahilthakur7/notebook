@@ -12,7 +12,9 @@ root 'static_pages#home'
          resources :notes
      end
      resource :publish_notes do
-         resources :notes
+         resources :notes do
+             resources :comments,only: [:create]
+         end
      end
  end
   # The priority is based upon order of creation: first created -> highest priority.

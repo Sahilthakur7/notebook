@@ -7,12 +7,14 @@ class NotesController < ApplicationController
 
     def show
         @note = Note.find(params[:id])
+        @user = @note.user
         unless on_publish_notes_page
             if current_user != @note.user 
                 redirect_to root_path
                 flash[:notice] = "You are not allowed to do that"
             end
         end
+        @comment = Comment.new
     end
 
     def index

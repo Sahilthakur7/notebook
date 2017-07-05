@@ -2,11 +2,65 @@
 <p class="lead">Author: <%= @note.user.to_s%></p>
 <p class="lead">Dated: <%= @note.creation_date%></p>
 <div class="show">
-<font face="courier new"><%=  @note.content%></font>
+    <font face="courier new"><%=  @note.content%></font>
 </div>
 <% if is_owner?(current_user)  %>
-<%= link_to "Delete Note", user_quick_notes_note_path(current_user,@note), method: :delete, data: { confirm: "Are you sure?"} , class: "btn btn-danger "%>
-<% unless current_page?(user_diary_note_path(current_user,@note))%>
-<%= link_to "Update Note", edit_user_quick_notes_note_path(current_user,@note)  , class: "btn btn-success "%>
+    <%= link_to "Delete Note", user_quick_notes_note_path(current_user,@note), method: :delete, data: { confirm: "Are you sure?"} , class: "btn btn-danger "%>
+    <% unless current_page?(user_diary_note_path(current_user,@note))%>
+        <%= link_to "Update Note", edit_user_quick_notes_note_path(current_user,@note)  , class: "btn btn-success "%>
+    <%end%>
 <%end%>
-<%end%>
+
+<br>
+<br>
+<br>
+<br>
+<% if current_page?(user_publish_notes_note_path(@user,@note))%>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h2 class="page-header">Comments</h2>
+                <section class="comment-list">
+                    <% if @note.comments.any?%>
+                        <% @note.comments.each do |comment| %>
+                            <article class="row">
+                                <div class="col-md-2 col-sm-2 hidden-xs">
+                                    <figure class="thumbnail">
+                                        <%= image_tag comment.user.avatar.url(:medium)%>
+                                         <figcaption class="text-center"><%= comment.user.username%></figcaption>
+                                    </figure>
+                                </div>
+                                <div class="col-md-10 col-sm-10">
+                                    <div class="panel panel-default arrow left">
+                                        <div class="panel-body">
+                                            <header class="text-left">
+                                                <div class="comment-user"><i class="fa fa-user"></i><%= comment.user%></div>
+                                                <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> <%= comment.created_at.to_date%></time>
+                                            </header>
+                                            <div class="comment-post">
+                                                <p><%= comment.content%></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        <%end%>
+                    <%end%>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col md-6 sm-6">
+
+                                    <%= form_for([@user,:publish_notes,@note,@comment]) do |f|%>
+                                        <div class="from-group">
+                                            <%= f.label :comment%>
+                                            <%= f.text_area :content, class: "form-control", placeholder: "Write a comment.."%>
+                                        </div>
+                                        <div>
+                                            <%=f.submit "Add comment", class: "btn btn-success"%>
+                                        </div>
+                                    <%end%>
+                                </div>
+                            </div>
+                        </div>
+
+                    <%end%>
