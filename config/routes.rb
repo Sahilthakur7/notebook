@@ -16,6 +16,11 @@ root 'static_pages#home'
              resources :comments,only: [:create]
          end
      end
+     resource :shared_notes do
+        resources :notes do
+            resources :comments, only: [:create]
+        end
+     end
  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

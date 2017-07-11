@@ -8,7 +8,7 @@ class NotesController < ApplicationController
     def show
         @note = Note.find(params[:id])
         @user = @note.user
-        unless on_publish_notes_page
+        unless on_publish_notes_page || on_shared_notes_page
             if current_user != @note.user 
                 redirect_to root_path
                 flash[:notice] = "You are not allowed to do that"
@@ -57,7 +57,7 @@ class NotesController < ApplicationController
     private
 
     def note_params
-        params.require(:note).permit(:title,:content,:visibility)
+        params.require(:note).permit(:receiver,:title,:content,:visibility)
     end
 
     def on_diary_page
@@ -78,6 +78,14 @@ class NotesController < ApplicationController
 
     def on_publish_notes_page
         if request.original_fullpath.include?("publish")
+            return true
+        else
+            return false
+        end
+    end
+
+    def on_shared_notes_page
+        if request.original_fullpath.include?("shared")
             return true
         else
             return false
@@ -107,6 +115,14 @@ class NotesController < ApplicationController
                 redirect_to user_publish_notes_path(current_user)
             else
                 redirect_to root_path
+            end
+        elsif on_shared_notes_page
+            @note.make_it_shared_note
+            if @note.save
+                redirect_to user_shared_notes_path(current_user)
+            else
+                redirect_to root_path
+                flash[:notice] = "Couldn't happen"
             end
 
         else

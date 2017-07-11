@@ -1,0 +1,25 @@
+
+<%=form_for([@user,:shared_notes,@note]) do |f|%>
+    <div class="col-md-6 form-line">
+        <div class="form-group">
+            <%=f.label :title%>
+            <%=f.text_field :title ,class: "form-control",placeholder: "Title goes here.."%>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <%=f.label :content%>
+            <%=f.text_area :content, class: "form-control" ,placeholder: "Content goes here.."%>
+        </div>
+        <div>
+            <div class="form-group">
+                <%= f.label :receiver%>
+                <%=f.select :receiver, User.all.collect { |p| [p.name, p.id]} , include_blank: true , class:"btn btn-secondary dropdown-toggle" %>
+                </div>
+
+            <%=f.submit "Save Note",class: "btn btn-default"%>
+        </div>
+
+    </div>
+<%end%>
+

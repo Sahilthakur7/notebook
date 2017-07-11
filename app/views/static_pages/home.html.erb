@@ -54,8 +54,9 @@
                             <div class="card-block">
                                 <p class="card-text">In the notebook, you can send your notes to any user on the app and can receive notes from anyone.Just by your username.</p>
                                 <% if user_signed_in? %>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Learn More</button>
+                                    <%= link_to "Go!", user_shared_notes_path(current_user), class: "btn btn-danger"%>
                             <%end%>
+
                             </div>
 
                         </div>

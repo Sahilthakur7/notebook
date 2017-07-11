@@ -3,6 +3,8 @@ class Note < ActiveRecord::Base
   scope :quick_notes, -> { where(visibility: 'quick')}
   scope :diary_notes, -> { where(visibility: 'diary')}
   scope :publish_notes, -> { where(visibility: 'publish')}
+  scope :sent_notes, -> { where(visibility: 'shared')}
+  scope :received_notes, -> { where(visibility: 'shared')}
   default_scope -> { order(created_at: :desc)}
   has_many :comments
 
@@ -17,6 +19,10 @@ class Note < ActiveRecord::Base
 
   def make_it_publish_note
       update_attribute(:visibility, "publish")
+  end
+
+  def make_it_shared_note
+      update_attribute(:visibility, "shared")
   end
 
   def creation_date

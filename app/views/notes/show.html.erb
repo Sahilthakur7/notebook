@@ -6,7 +6,7 @@
 </div>
 <% if is_owner?(current_user)  %>
     <%= link_to "Delete Note", user_quick_notes_note_path(current_user,@note), method: :delete, data: { confirm: "Are you sure?"} , class: "btn btn-danger "%>
-    <% unless current_page?(user_diary_note_path(current_user,@note))%>
+    <% unless current_page?(user_diary_note_path(current_user,@note)) || current_page?(user_shared_notes_note_path(current_user,@note))%>
         <%= link_to "Update Note", edit_user_quick_notes_note_path(current_user,@note)  , class: "btn btn-success "%>
     <%end%>
 <%end%>
@@ -27,7 +27,7 @@
                                 <div class="col-md-2 col-sm-2 hidden-xs">
                                     <figure class="thumbnail">
                                         <%= image_tag comment.user.avatar.url(:medium)%>
-                                         <figcaption class="text-center"><%= comment.user.username%></figcaption>
+                                        <figcaption class="text-center"><%= comment.user.username%></figcaption>
                                     </figure>
                                 </div>
                                 <div class="col-md-10 col-sm-10">
@@ -46,21 +46,21 @@
                             </article>
                         <%end%>
                     <%end%>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col md-6 sm-6">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col md-6 sm-6">
 
-                                    <%= form_for([@user,:publish_notes,@note,@comment]) do |f|%>
-                                        <div class="from-group">
-                                            <%= f.label :comment%>
-                                            <%= f.text_area :content, class: "form-control", placeholder: "Write a comment.."%>
-                                        </div>
-                                        <div>
-                                            <%=f.submit "Add comment", class: "btn btn-success"%>
-                                        </div>
-                                    <%end%>
-                                </div>
+                                <%= form_for([@user,:publish_notes,@note,@comment]) do |f|%>
+                                    <div class="from-group">
+                                        <%= f.label :comment%>
+                                        <%= f.text_area :content, class: "form-control", placeholder: "Write a comment.."%>
+                                    </div>
+                                    <div>
+                                        <%=f.submit "Add comment", class: "btn btn-success"%>
+                                    </div>
+                                <%end%>
                             </div>
                         </div>
+                    </div>
 
-                    <%end%>
+                <%end%>

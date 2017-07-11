@@ -23,4 +23,8 @@ module ApplicationHelper
     def owner
         @owner = User.find(params[:user_id] || params[:id])
     end
+
+    def receiver_user(receiver)
+            User.find(receiver)
+    end
 end

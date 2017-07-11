@@ -1,0 +1,28 @@
+<center><h1>Shared Notes</h1></center>
+
+<div class="card">
+    <%= image_tag("bulb.jpg", class: "card-img-top")%>
+    <div class="card-block">
+        <center><%= link_to "Send", new_user_shared_notes_note_path(current_user,@note), class: "btn btn-success"%></center>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6" id="sent">
+            <h3>RECEIVED NOTES:</h3>
+            <% @received_notes.each do |note|%>
+                <%= link_to note.title, [@user,:shared_notes,note]%>(<%=note.user%>)
+            <%end%>
+        </div>
+        <div class="col-sm-6" id="received">
+            <h3>SENT NOTES:</h3>
+            <% @sent_notes.each do |note|%>
+                <%= link_to note.title, [@user,:shared_notes,note]%>(<%=receiver_user(note.receiver)%>)
+                </br>
+            <%end%>
+        </div>
+
+        </div>
+    </div>
+</div>
