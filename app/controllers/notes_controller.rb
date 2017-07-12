@@ -8,7 +8,7 @@ class NotesController < ApplicationController
     def show
         @note = Note.find(params[:id])
         @user = @note.user
-        unless on_publish_notes_page || on_shared_notes_page
+        unless on_publish_notes_page || allowed_on_notes_page
             if current_user != @note.user 
                 redirect_to root_path
                 flash[:notice] = "You are not allowed to do that"
@@ -19,6 +19,11 @@ class NotesController < ApplicationController
 
     def index
         @user = User.find(params[:user_id])
+        unless request.original_fullpath.include?((current_user.id).to_s)
+            redirect_to root_path
+            flash[:notice] = "You are not allowed to do that"
+        end
+        
         if on_quick_notes_page
             @notes = Note.quick_notes.where(user: @user)
         elsif on_diary_page
@@ -89,6 +94,18 @@ class NotesController < ApplicationController
             return true
         else
             return false
+        end
+    end
+
+    def allowed_on_notes_page
+        @note = Note.find(params[:id])
+        if request.original_fullpath.include?("shared")
+            if @note.user == current_user || @note.receiver == current_user.id
+                return true
+            else
+                return false
+                
+            end
         end
     end
 
