@@ -1,20 +1,22 @@
 <% if is_owner?(current_user)%>
-<div class="jumbotron">
-    <h1 class="display-3"><%= @user.name%>(<%= @user.username%>)</h1>
-    <%= link_to "(*settings)", edit_user_registration_path(current_user)%>
+    <div class="jumbotron">
+        <h1 class="display-3"><%= @user.name%>(<%= @user.username%>)</h1>
+        <%= link_to "(*settings)", edit_user_registration_path(current_user)%>
         <p class="lead"></p>
-          <hr class="my-4">
-            <p>What are you upto today?</p>
-              <p class="lead"> 
-                  <%= link_to "Diary", user_diary_path(current_user), class:"btn btn-info btn-lg"%>&emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+        <hr class="my-4">
+        <p>What are you upto today?</p>
+        <p class="lead"> 
+        <%= link_to "Diary", user_diary_path(current_user), class:"btn btn-info btn-lg"%>&emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
 
-                  <%= link_to "Publish Notes",user_publish_notes_path(@user), class:"btn btn-info btn-lg"%>&emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
-                  <%= link_to "Quick Notes",user_quick_notes_path(current_user), class:"btn btn-info btn-lg"%>&emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+        <%= link_to "Publish Notes",user_publish_notes_path(@user), class:"btn btn-info btn-lg"%>&emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+        <%= link_to "Quick Notes",user_quick_notes_path(current_user), class:"btn btn-info btn-lg"%>&emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
 
-                  <%= link_to "Shared Notes", user_shared_notes_path(@user), class:"btn btn-info btn-lg"%>&emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
-</div>
+        <%= link_to "Shared Notes", user_shared_notes_path(@user), class:"btn btn-info btn-lg"%>&emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+    </div>
 
-<p style="text-align:center;"><%= image_tag @user.avatar.url(:medium), class: "img-cir"%></p>
+    <p style="text-align:center;"><%= image_tag @user.avatar.url(:medium), class: "img-cir"%></p>
 <%else%>
     <%= render 'guest_show'%>
 <%end%>
+
+"hello  "

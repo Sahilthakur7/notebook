@@ -19,11 +19,14 @@ class NotesController < ApplicationController
 
     def index
         @user = User.find(params[:user_id])
-        unless request.original_fullpath.include?((current_user.id).to_s)
-            redirect_to root_path
-            flash[:notice] = "You are not allowed to do that"
+
+        unless request.original_fullpath.include?("publish_notes")
+            unless request.original_fullpath.include?((current_user.id).to_s)
+                redirect_to root_path
+                flash[:notice] = "You are not allowed to do that"
+            end
         end
-        
+
         if on_quick_notes_page
             @notes = Note.quick_notes.where(user: @user)
         elsif on_diary_page
@@ -104,7 +107,7 @@ class NotesController < ApplicationController
                 return true
             else
                 return false
-                
+
             end
         end
     end
